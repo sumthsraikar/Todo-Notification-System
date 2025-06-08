@@ -40,6 +40,7 @@ Architecture:
 ---
   
 AWS Backend Setup
+
 🔹 Step 1: Create an SNS Topic
 Go to the Amazon SNS Console
 
