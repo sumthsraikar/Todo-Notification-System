@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo Notification System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    main {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin: 1rem 0 0.5rem;
+      font-weight: bold;
+    }
+
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 1.5rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #response {
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Send Notification</h1>
+    <form id="notificationForm">
+      <label for="type">Notification Type</label>
+      <select id="type" name="type" required>
+        <option value="sms">SMS</option>
+        <option value="email">Email</option>
+      </select>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="4" required placeholder="Type your message here..."></textarea>
+
+      <button type="submit">Send Notification</button>
+    </form>
+    <div id="response"></div>
+  </main>
+
+  <script>
+    document.getElementById('notificationForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const type = document.getElementById('type').value;
+      const message = document.getElementById('message').value;
+      const responseEl = document.getElementById('response');
+
+      responseEl.textContent = 'Sending...';
+
+      try {
+        const response = await fetch('https://t85enyczuf.execute-api.eu-north-1.amazonaws.com/sendNotification', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type, message })
+        });
+
+        const result = await response.json();
+        responseEl.textContent = result.message || result.error || 'Sent successfully.';
+        responseEl.style.color = result.error ? 'red' : 'green';
+      } catch (error) {
+        responseEl.textContent = 'Failed to send notification.';
+        responseEl.style.color = 'red';
+      }
+    });
+  </script>
+</body>
+
+</html>
