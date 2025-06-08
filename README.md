@@ -5,6 +5,10 @@ This project allows you to send notifications via **Email** or **SMS** using **A
 
 ---
 
+
+Architecture:
+![diagram-export-6-8-2025-5_36_59-PM](https://github.com/user-attachments/assets/8023feb9-6ea8-4364-9ee4-77251e47a410)
+
 ##  Tech Stack
 
 - **Frontend**: HTML, JavaScript
@@ -22,10 +26,6 @@ This project allows you to send notifications via **Email** or **SMS** using **A
 - Real-time success/error message handling
 
 ---
-
-Architecture:
-![diagram-export-6-8-2025-5_36_59-PM](https://github.com/user-attachments/assets/8023feb9-6ea8-4364-9ee4-77251e47a410)
-
 
 ##  Project Structure
  todo-notification-system\
