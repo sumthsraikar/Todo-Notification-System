@@ -36,6 +36,9 @@ Architecture:
 ├── lambda_function.py # AWS Lambda function code
 └── sns_instructions.md # Setup guide for SNS, Lambda, and API Gateway
 
+
+---
+  
 AWS Backend Setup
 🔹 Step 1: Create an SNS Topic
 Go to the Amazon SNS Console
